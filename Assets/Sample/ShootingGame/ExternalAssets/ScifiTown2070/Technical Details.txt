@@ -1,0 +1,27 @@
+Features 
+ 
+Built for modularity for the most flexibility in design. 
+ 
+All materials made Substance painter. 
+ 
+Colorizable buildings, props let you harmonize your scene.  
+ 
+Texture Sizes:  4096, 2048, 512 
+ 
+Particles: 1 
+ 
+Collider: Apply to some objects 
+ 
+Vertex Count: Buildings : 293-1450, Props : 216-4503 
+ 
+Number of Meshes: 46 
+
+Number of Prefab: 8
+ 
+Number of Materials Materials : 48 
+ 
+Number of Textures: 175  
+ 
+Supported Development Platforms: PC, MAC 
+ 
+Supported Target Build Platforms: PC, MAC, Linux, VR, Xbox one, Ps4 

@@ -1,0 +1,62 @@
+using System;
+using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
+using UnityEngine.PlayerLoop;
+
+public class PlayerPresenter : MonoBehaviour
+{
+    [SerializeField] private PlayerModel _model;
+    [SerializeField] private PlayerView _view;
+
+    private void Start()
+    {
+        HealthObserver();
+        Shot();
+        ChangeBulletType();
+        _view.BulletTypeText.text = "NormalShot";
+    }
+
+    private void FixedUpdate()
+    {
+        var moveVector = GetMoveVector();
+        _model._rigidbody.velocity = moveVector * _model._moveSpeed;
+    }
+
+    private Vector3 GetMoveVector()
+    {
+        var x = _model.MoveDirection.Value.x;
+        var z = _model.MoveDirection.Value.z;
+        return new Vector3(x, 0, z);
+    }
+
+    private void HealthObserver()
+    {
+        _model.Health
+            .Subscribe(x =>
+            {
+                _view.SetSliderValue((float)x / _model.MaxHP); 
+                _view.SetHpText(x);
+            }).AddTo(this);
+    }
+
+    private void Shot()
+    {
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetKey(KeyCode.Space))
+            .ThrottleFirst(TimeSpan.FromSeconds(0.5f))
+            .Subscribe(_ => { _model.Shot(); });
+    }
+
+    private void ChangeBulletType()
+    {
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetKey(KeyCode.S))
+            .ThrottleFirst(TimeSpan.FromSeconds(1f))
+            .Subscribe(_ =>
+            {
+                _model.ChangeBulletType();
+                _view.BulletTypeText.text = _model._cuurentBullettype;
+            });
+    }
+}
