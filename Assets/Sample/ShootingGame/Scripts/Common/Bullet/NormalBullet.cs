@@ -5,23 +5,13 @@ using UnityEngine;
 public class NormalBullet : IBulletBase
 {
     private GameObject _prefab;
-    public string Name
-    {
-        get
-        {
-            return "NormalBullet";
-        }
-    }
+    public string Name => "NormalBullet";
 
     public GameObject prefab
     {
-        get
-        {
-            return _prefab;
-        }
-        set
-        {
-            _prefab = value;
-        }
+        get => _prefab;
+        set => _prefab = value;
     }
+    
+    
 }
