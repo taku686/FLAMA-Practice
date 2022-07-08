@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -7,6 +8,11 @@ using Zenject;
 public class InputForMove : MonoBehaviour
 {
     [Inject] private IInputtable _inputObject;
+
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
 
     // Update is called once per frame
     void Update()
@@ -21,6 +27,6 @@ public class InputForMove : MonoBehaviour
     private void Move(Vector3 vec)
     {
         var position = transform.localPosition;
-        transform.localPosition = position + vec;
+        transform.localPosition = position + vec * 0.1f;
     }
 }
