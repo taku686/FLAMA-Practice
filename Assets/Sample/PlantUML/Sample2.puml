@@ -1,0 +1,41 @@
+﻿@startuml
+
+AdapterPatternSample --|> MonoBehaviour
+AdapterPatternSample --> EnemyRobot
+AdapterPatternSample --> EnemyTank
+AdapterPatternSample --> EnemyRobotAdapter
+EnemyRobotAdapter ..|> IEnemyAttacker
+EnemyRobotAdapter --> EnemyRobot
+EnemyTank ..|> IEnemyAttacker
+
+
+class MonoBehaviour
+class AdapterPatternSample{
+-void Start()
+}
+class EnemyRobot{
++ void FireWeapon()
++ void DriveForward()
++ void AssignDriver(string driver)
+}
+class EnemyTank{
++ void FireWeapon()
++ void DriveForward()
++ void AssignDriver(string driver)
+}
+class EnemyRobotAdapter{
+- readonly EnemyRobot _robot
++ EnemyRobotAdapter(EnemyRobot robot)
++ void FireWeapon()
++ void DriveForward()
++ void AssignDriver(string driver)
+}
+interface IEnemyAttacker{
+void FireWeapon()
+void DriveForward()
+void AssignDriver(string driver)
+}
+
+
+
+@enduml

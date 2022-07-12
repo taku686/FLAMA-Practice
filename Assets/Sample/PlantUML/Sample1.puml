@@ -1,0 +1,23 @@
+﻿@startuml
+Class01 <|-- Class02
+Class03 *-- Class04
+Class05 o-- Class06
+Class07 <|-- Class08
+Class09 --> Class10
+Class11 ..> Class12
+Class13 ..|> Class14 
+
+Class01 : -Start()
+Class03 : #String name
+Class03 : ~int[] numbers
+class Class05{
++String Data
+ void Update()
+ }
+class Class07{
+{static}String _name
+{abstract}void Start()
+}
+
+
+@enduml
