@@ -1,0 +1,22 @@
+﻿@startuml BridgeSample1
+
+Implementer <|-- ConcreteImplementer
+Implementer <-- Abstraction
+Abstraction <|-- RefinedAbstraction
+
+class Abstraction{
+# Implementer _impl
++ Abstraction(Implementer impl)
++ void Execute()
+}
+class RefinedAbstraction{
++ RefinedAbstraction(Implementer impl)
++ void ExecuteFiveTimes()
+}
+class Implementer{
++ abstract void Execute()
+}
+class ConcreteImplementer{
++ override void Execute()
+}
+@enduml

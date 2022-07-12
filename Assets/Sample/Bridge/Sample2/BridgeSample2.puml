@@ -1,0 +1,18 @@
+@startuml BridgeSample2
+
+BridgeSample2 --|> MonoBehaviour
+BridgeSample2 --> Customers
+BridgeSample2 --> CustomersData
+CustomersBase --> DataObject
+Customers --|> CustomersBase
+CustomersData --|> DataObject
+
+
+class MonoBehaviour
+class BridgeSample2
+class Customers
+abstract class DataObject
+class CustomersData
+class CustomersBase
+
+@enduml
