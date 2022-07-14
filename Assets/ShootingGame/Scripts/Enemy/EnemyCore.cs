@@ -13,7 +13,7 @@ public class EnemyCore : MonoBehaviour,IDamageApplicable
     private ReactiveProperty<int> _hp;
     private EnemyMove _enemyMove;
     private readonly AsyncSubject<int> _onKilledAsyncSubject = new AsyncSubject<int>();
-    public IObservable<int> OnKilledAsysnc => _onKilledAsyncSubject;
+    public IObservable<int> OnKilledAsync => _onKilledAsyncSubject;
 
     
     private void Awake()

@@ -1,0 +1,12 @@
+@startuml
+ProxySample2 ..> ISpeaker
+EnglishSpeaker ..|> ISpeaker
+JapaneseSpeaker ..|> ISpeaker
+JapaneseSpeaker --> EnglishSpeaker
+
+class ProxySample2
+interface ISpeaker
+class EnglishSpeaker
+class JapaneseSpeaker
+
+@enduml

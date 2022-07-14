@@ -1,0 +1,13 @@
+﻿@startuml
+
+Program ..> IPrintable
+PrinterProxy ..|> IPrintable
+Printer ..|> IPrintable
+PrinterProxy --|> Printer
+
+interface IPrintable
+class Printer
+class PrinterProxy
+class Program
+
+@enduml
