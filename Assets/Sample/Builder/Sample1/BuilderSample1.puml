@@ -1,0 +1,25 @@
+@startuml
+
+BuilderSample1 --> Shop 
+BuilderSample1 --> ScooterBuilder
+BuilderSample1 --> CarBuilder
+BuilderSample1 --> MotorCycleBuilder
+Shop --> VehicleBuilder
+VehicleBuilder --> Vehicle
+MotorCycleBuilder --|> VehicleBuilder
+MotorCycleBuilder --> Vehicle
+CarBuilder --|> VehicleBuilder
+CarBuilder --> Vehicle
+ScooterBuilder --|> VehicleBuilder
+ScooterBuilder --> Vehicle
+
+
+class BuilderSample1
+class Shop
+abstract class VehicleBuilder
+class MotorCycleBuilder
+class CarBuilder
+class ScooterBuilder
+class Vehicle
+ 
+@enduml

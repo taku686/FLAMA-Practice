@@ -1,0 +1,18 @@
+@startuml
+ChainSample2 --> Director
+ChainSample2 --> VicePresident
+ChainSample2 --> President
+ChainSample2 --> Purchase
+Approver --> Approver
+Director --|> Approver
+Director --|> VicePresident
+Director --|> President
+
+class ChainSample2
+abstract class Approver
+class Director
+class VicePresident
+class President
+class Purchase
+
+@enduml

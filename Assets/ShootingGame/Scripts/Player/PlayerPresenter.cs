@@ -8,7 +8,7 @@ public class PlayerPresenter : MonoBehaviour
 {
     [SerializeField] private PlayerModel _model;
     [SerializeField] private PlayerView _view;
-
+    [SerializeField] private UIView _uiView;
     private void Start()
     {
         HealthObserver();
@@ -33,11 +33,20 @@ public class PlayerPresenter : MonoBehaviour
     private void HealthObserver()
     {
         _model.Health
+            .Where(x => x > 0)
             .Subscribe(x =>
             {
-                _view.SetSliderValue((float)x / _model.MaxHP); 
+                _view.SetSliderValue((float)x / _model.MaxHP);
                 _view.SetHpText(x);
+            }).AddTo(this); 
+        _model.Health
+            .Where(x => x <= 0)
+            .Subscribe(x =>
+            {
+              _model.Death();
+              _uiView._gameOverView.SetActive(true);
             }).AddTo(this);
+        
     }
 
     private void Shot()

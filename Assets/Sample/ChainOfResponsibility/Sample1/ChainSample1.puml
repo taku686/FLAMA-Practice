@@ -1,0 +1,15 @@
+@startuml
+Client --> ConcreteHandler1
+Client --> ConcreteHandler2
+Client --> SomeTask
+ConcreteHandler1 --|> Handler
+ConcreteHandler2 --|> Handler
+Handler --> Handler
+
+
+abstract class Handler
+class SomeTask
+class ConcreteHandler1
+class ConcreteHandler2
+class Client
+@enduml

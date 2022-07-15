@@ -5,10 +5,10 @@ using UniRx;
 
 public class PlayerModel : MonoBehaviour
 {
-    public readonly int MaxHP = 100;
+    public readonly int MaxHP = 30;
     public readonly Vector3 _shotPosSetOff = new Vector3(0, 0, 3.0f);
     public IReadOnlyReactiveProperty<int> Health => _health;
-    private readonly IntReactiveProperty _health = new IntReactiveProperty(100);
+    private readonly IntReactiveProperty _health = new IntReactiveProperty(30);
     public IReadOnlyReactiveProperty<Vector3> MoveDirection => _move;
     private readonly ReactiveProperty<Vector3> _move = new ReactiveProperty<Vector3>();
     [SerializeField] private PlayerShotManagement _shotManagement;
@@ -16,6 +16,7 @@ public class PlayerModel : MonoBehaviour
     public string _cuurentBullettype;
     public Rigidbody _rigidbody;
     public float _moveSpeed = 3;
+    private bool _IsDeath;
 
     private void Start()
     {
@@ -26,6 +27,10 @@ public class PlayerModel : MonoBehaviour
 
     private void Update()
     {
+        if (_IsDeath)
+        {
+            return;
+        }
         Move();
     }
 
@@ -70,5 +75,11 @@ public class PlayerModel : MonoBehaviour
     private void Move()
     {
         _move.SetValueAndForceNotify(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+    }
+
+    public void Death()
+    {
+        _IsDeath = true;
+        _health.Value = 30;
     }
 }

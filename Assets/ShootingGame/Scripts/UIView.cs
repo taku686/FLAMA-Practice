@@ -8,6 +8,7 @@ public class UIView : MonoBehaviour
 {
      public Text _score;
      public int _totalScore;
+     public GameObject _gameOverView;
 
     private void Start()
     {
