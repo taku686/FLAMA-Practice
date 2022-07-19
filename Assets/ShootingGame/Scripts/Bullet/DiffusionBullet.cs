@@ -1,15 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class DiffusionBullet : IBulletBase
+public class DiffusionBullet : BulletDecorator
 {
-    private GameObject _prefab;
-    public string Name => "DiffusionBullet";
-
-    public GameObject prefab
+    public DiffusionBullet(IBulletBase bulletBase)
     {
-        get => _prefab;
-        set => _prefab = value;
+        _bulletBase = bulletBase;
+        _bulletBase.Attack = bulletBase.Attack * 1;
     }
-    
-    
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IShot 
 {
-    void Shot(GameObject bullet,PlayerModel player);
+    void Shot(IBulletBase bullet,PlayerModel player);
 }

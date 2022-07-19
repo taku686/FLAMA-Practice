@@ -1,0 +1,20 @@
+@startuml
+
+InterpreterSample1 --> Context
+InterpreterSample1 --> ThousandExpression
+InterpreterSample1 --> HundredExpression
+InterpreterSample1 --> TenExpression
+InterpreterSample1 --> OneExpression
+ThousandExpression --|> Expression
+HundredExpression --|> Expression
+TenExpression --|> Expression
+OneExpression --|> Expression
+
+class InterpreterSample1
+class Context
+abstract class Expression
+class ThousandExpression
+class HundredExpression
+class TenExpression
+class OneExpression
+@enduml

@@ -9,11 +9,12 @@ public class BulletFactory : IFactoryBase
     NormalBullet _normalBullet;
     LaserBullet _laserBullet;
     DiffusionBullet _diffusionBullet;
+
     public void Initialize()
     {
         _normalBullet = new NormalBullet();
-        _laserBullet = new LaserBullet();
-        _diffusionBullet = new DiffusionBullet();
+        _laserBullet = new LaserBullet(_normalBullet);
+        _diffusionBullet = new DiffusionBullet(_normalBullet);
     }
 
     protected override IBulletBase MakeBullet(BulletType.BulletTypes type)

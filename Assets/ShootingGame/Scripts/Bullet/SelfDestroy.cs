@@ -7,9 +7,9 @@ public class SelfDestroy : MonoBehaviour
 {
     private Damage _damage;
 
-    private void Start()
+    public void SetDamage(Damage damage)
     {
-        _damage = new Damage(1);
+        _damage = damage;
     }
 
     private void OnTriggerEnter(Collider other)

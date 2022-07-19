@@ -2,26 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserBullet : IBulletBase
+public class LaserBullet : BulletDecorator
 {
-    private GameObject _prefab;
-    public string Name
+    public LaserBullet(IBulletBase bulletBase)
     {
-        get
-        {
-            return "LaserBullet";
-        }
-    }
-
-    public GameObject prefab
-    {
-        get
-        {
-            return _prefab;
-        }
-        set
-        {
-            _prefab = value;
-        }
+        _bulletBase = bulletBase;
+        _bulletBase.Attack = bulletBase.Attack * 2;
     }
 }

@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerShotManagement : MonoBehaviour
 {
     private IShot _shot;
-    private GameObject _bullet;
+    private IBulletBase _bullet;
     private NormalShot _normalShot;
     private LaserShot _laserShot;
     private DiffusionShot _diffusionShot;
     private BulletFactory _bulletFactory;
+
     public void Initialize()
     {
         _bulletFactory = GameObject.FindGameObjectWithTag("Manager").GetComponent<BulletFactory>();
@@ -18,7 +19,7 @@ public class PlayerShotManagement : MonoBehaviour
         _laserShot = this.gameObject.AddComponent<LaserShot>();
         _diffusionShot = this.gameObject.AddComponent<DiffusionShot>();
         _shot = _normalShot;
-        _bullet = _bulletFactory.GetItem(BulletType.BulletTypes.NormalBullet).prefab;
+        _bullet = _bulletFactory.GetItem(BulletType.BulletTypes.NormalBullet);
     }
 
     public void SetShot(ShotType.ShotTypes type)
@@ -27,15 +28,15 @@ public class PlayerShotManagement : MonoBehaviour
         {
             case ShotType.ShotTypes.NormalShot:
                 _shot = _normalShot;
-                _bullet = _bulletFactory.GetItem(BulletType.BulletTypes.NormalBullet).prefab;
+                _bullet = _bulletFactory.GetItem(BulletType.BulletTypes.NormalBullet);
                 break;
             case ShotType.ShotTypes.LaserShot:
                 _shot = _laserShot;
-                _bullet = _bulletFactory.GetItem(BulletType.BulletTypes.LaserBullet).prefab;
+                _bullet = _bulletFactory.GetItem(BulletType.BulletTypes.LaserBullet);
                 break;
             case ShotType.ShotTypes.DiffusionShot:
                 _shot = _diffusionShot;
-                _bullet = _bulletFactory.GetItem(BulletType.BulletTypes.DiffusionBullet).prefab;
+                _bullet = _bulletFactory.GetItem(BulletType.BulletTypes.DiffusionBullet);
                 break;
         }
     }
@@ -44,6 +45,4 @@ public class PlayerShotManagement : MonoBehaviour
     {
         _shot.Shot(_bullet, player);
     }
-
-
 }

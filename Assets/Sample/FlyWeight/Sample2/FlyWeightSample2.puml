@@ -1,0 +1,18 @@
+﻿@startuml
+
+FlyWeightSample2 --> BulletFactory
+BulletFactory --> NormalBullet
+BulletFactory --> LaserBullet
+BulletFactory --> DiffusionBullet
+NormalBullet ..|> IBullet
+LaserBullet ..|> IBullet
+DiffusionBullet ..|> IBullet
+
+class FlyWeightSample2
+interface IBullet
+class BulletFactory
+class NormalBullet
+class LaserBullet
+class DiffusionBullet
+
+@enduml

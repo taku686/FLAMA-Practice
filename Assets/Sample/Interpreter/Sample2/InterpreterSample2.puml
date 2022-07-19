@@ -1,0 +1,16 @@
+@startuml
+InterpreterSample2 --> Context
+InterpreterSample2 --> GoodMorningExpression
+InterpreterSample2 --> HelloExpression
+InterpreterSample2 --> GoodByeExpression
+GoodMorningExpression --|> GreetingExpression
+HelloExpression --|> GreetingExpression
+GoodByeExpressionExpression --|> GreetingExpression
+
+class InterpreterSample2
+class Context
+abstract class GreetingExpression
+class HelloExpression
+class GoodByeExpression
+class GoodMorningExpression
+@enduml

@@ -1,0 +1,16 @@
+﻿@startuml
+FlyWeightSample1 --> SlimeFactory
+Slime ..|> SlimeFlyWeight
+MetalSlime ..|> SlimeFlyWeight
+KingSlime ..|> SlimeFlyWeight
+SlimeFactory --> Slime
+SlimeFactory --> MetalSlime
+SlimeFactory --> KingSlime
+
+class FlyWeightSample1
+interface SlimeFlyWeight
+class Slime
+class MetalSlime
+class KingSlime
+class SlimeFactory
+@enduml

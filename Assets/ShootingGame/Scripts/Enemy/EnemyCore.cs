@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using System;
+using Random = UnityEngine.Random;
 
 public class EnemyCore : MonoBehaviour,IDamageApplicable
 {
