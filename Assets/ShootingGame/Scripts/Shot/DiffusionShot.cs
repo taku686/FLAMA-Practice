@@ -18,7 +18,7 @@ public class DiffusionShot :MonoBehaviour, IShot
             bulletClone.GetComponent<Rigidbody>().AddForce(bulletClone.transform.forward * _force, ForceMode.Impulse);
             var selfDestroy = bulletClone.AddComponent<SelfDestroy>();
             selfDestroy.SetDamage(new Damage(bullet.Attack));
-            Debug.Log("DiffusionShot");
+            Debug.Log("DiffusionShot"+"Attack"+ bullet.Attack);
         }
     }
 }

@@ -1,0 +1,11 @@
+@startuml
+MementoSample1 --> SalesProspect
+MementoSample1 --> ProspectMemory
+ProspectMemory --> Memento
+
+
+class MementoSample1
+class SalesProspect
+class Memento
+class ProspectMemory
+@enduml

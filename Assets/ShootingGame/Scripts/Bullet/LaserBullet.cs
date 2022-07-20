@@ -6,7 +6,7 @@ public class LaserBullet : BulletDecorator
 {
     public LaserBullet(IBulletBase bulletBase)
     {
-        _bulletBase = bulletBase;
+        _bulletBase = this;
         _bulletBase.Attack = bulletBase.Attack * 2;
     }
 }

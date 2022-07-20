@@ -1,0 +1,22 @@
+@startuml
+MediatorSample2 --> StockMediator
+MediatorSample2 --> GormanSlacks
+MediatorSample2 --> JTPoorman
+StockOffer --> Stock
+Colleague --> Mediator
+GormanSlacks --|> Colleague
+JTPoorman --|> Colleague
+StockMediator --|> Mediator
+StockMediator --|> StockOffer
+StockMediator --|> Colleague
+
+enum Stock
+class MediatorSample2
+class StockOffer
+abstract class Colleague
+class GormanSlacks
+class JTPoorman
+interface Mediator
+class StockMediator
+ 
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+MediatorSample1 --> Chatroom
+MediatorSample1 -->"4" Beatle
+MediatorSample1 --> NonBeatle
+Chatroom --|> AbstractChatroom
+Participant --> Chatroom
+Beatle --|> Participant
+NonBeatle --|> Participant
+
+
+class MediatorSample1
+abstract class AbstractChatroom
+class Chatroom
+class Participant
+class Beatle
+class NonBeatle
+
+@enduml

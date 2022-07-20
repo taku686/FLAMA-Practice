@@ -6,7 +6,7 @@ public class DiffusionBullet : BulletDecorator
 {
     public DiffusionBullet(IBulletBase bulletBase)
     {
-        _bulletBase = bulletBase;
+        _bulletBase = this;
         _bulletBase.Attack = bulletBase.Attack * 1;
     }
 }

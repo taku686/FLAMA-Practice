@@ -1,0 +1,12 @@
+@startuml
+Client --> TextEditor
+Client --> TextEditorSnapShotManager
+TextEditor --> TextEditorMemento
+TextEditorSnapShotManager --|> TextEditorMemento
+
+
+class Client
+class TextEditor
+class TextEditorSnapShotManager
+class TextEditorMemento
+@enduml
