@@ -1,0 +1,16 @@
+@startuml
+
+PrototypeSample2 --> CloneFactory
+CloneFactory --> IAnimal
+PrototypeSample2 --> Sheep
+IAnimal ..|> ICloneable
+Sheep ..|> IAnimal
+
+
+interface ICloneable
+class PrototypeSample2
+class CloneFactory
+interface IAnimal
+class Sheep
+
+@enduml

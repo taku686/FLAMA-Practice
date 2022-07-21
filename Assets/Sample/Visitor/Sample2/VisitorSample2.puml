@@ -1,0 +1,43 @@
+@startuml
+
+Visitor --> ItemAcceptor
+Visitor --> DoorAcceptor
+Visitor --> ActorAcceptor
+Acceptor --> Visitor
+CursorVisitor --|> Visitor
+CursorVisitor --> ItemAcceptor
+CursorVisitor --> DoorAcceptor
+CursorVisitor --> ActorAcceptor
+ItemAcceptor --|> Acceptor
+ItemAcceptor --> Visitor
+DoorAcceptor --|> Acceptor
+DoorAcceptor --> Visitor
+ActorAcceptor --|> Acceptor
+ActorAcceptor --> Visitor
+
+
+abstract class Visitor{
++ abstract void Visit(ItemAcceptor acceptor)
++ abstract void Visit(DoorAcceptor acceptor)
++ abstract void Visit(ActorAcceptor acceptor)
+}
+abstract class Acceptor{
++ abstract void Accept(Visitor visitor)
+}
+class CursorVisitor{
++ override void Visit((ItemAcceptor acceptor)
++ override void Visit((DoorAcceptor acceptor)
++ override void Visit((ActorAcceptor acceptor)
+}
+class ItemAcceptor{
++ override void Accept(Visitor visitor)
+}
+class DoorAcceptor{
++ override void Accept(Visitor visitor)
+}
+class ActorAcceptor{
++ override void Accept(Visitor visitor)
+}
+
+
+@enduml

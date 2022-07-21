@@ -1,0 +1,13 @@
+@startuml
+
+PrototypeSample1 --> ColorManager
+PrototypeSample1 --> "6" Color
+Color --|> ColorPrototype
+ColorManager --> ColorPrototype
+
+class PrototypeSample1
+abstract class ColorPrototype
+class Color
+class ColorManager
+
+@enduml

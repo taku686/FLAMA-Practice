@@ -1,0 +1,56 @@
+@startuml
+
+VisitorSample1 --> Employees
+VisitorSample1 --> Clerk
+VisitorSample1 --> Director
+VisitorSample1 --> President
+VisitorSample1 --> IncomeVisitor
+VisitorSample1 --> VacationVisitor
+IVisitor --> Element
+IncomeVisitor ..|> IVisitor
+IncomeVisitor --> Element
+VacationVisitor ..|> IVisitor
+VacationVisitor --> Element
+Element ..> IVisitor
+Employee --|> Element
+Employee ..> IVisitor
+Employees --> "many" Employee
+Employees ..> IVisitor
+Clerk --|> Employee
+Director --|> Employee
+President --|> Employee
+
+
+
+
+class VisitorSample1{
+-attach(new Clerk())
+-attach(new Director())
+-attach(new President())
+-accept(new IncomeVisitor())
+-accept(new VacationVisitor())
+}
+interface IVisitor{
+void visit(Element element)
+}
+class IncomeVisitor{
++ void Visit(Element element)
+}
+class VacationVisitor{
++ void Visit(Element element)
+}
+abstract class Element{
++ abstract void Accept(IVisitor visitor)
+}
+class Employee{
++ override void Accept(IVisitor visitor)
+}
+class Employees{
++ void Attach(Employee employee)
++ void Detach(Employee employee)
++ void Accept(IVisitor visitor)
+}
+class Clerk
+class Director
+class President
+@enduml
