@@ -1,0 +1,27 @@
+@startuml
+FactorySample1 --> NormalBulletFactory
+FactorySample1 --> LaserBulletFactory
+FactorySample1 --> DiffusionBulletFactory
+NormalBulletFactory ..|> BaseBulletFactory
+NormalBulletFactory ..|> NormalBullet
+LaserBulletFactory ..|> BaseBulletFactory
+LaserBulletFactory --|> LaserBullet
+DiffusionBulletFactory --|> BaseBulletFactory
+DiffusionBulletFactory --|> DiffusionBullet
+NormalBullet ..|> BaseBullet
+LaserBullet ..|> BaseBullet
+DiffusionBullet ..|> BaseBullet
+
+
+class FactorySample1
+interface BaseBulletFactory
+interface BaseBullet
+class NormalBulletFactory
+class LaserBulletFactory
+class DiffusionBulletFactory
+class NormalBullet
+class LaserBullet
+class DiffusionBullet
+
+
+@enduml

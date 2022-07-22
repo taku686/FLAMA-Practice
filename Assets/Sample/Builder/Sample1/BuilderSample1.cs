@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEditor.Build.Reporting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Sample.Builder.Sample1
 {

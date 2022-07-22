@@ -1,0 +1,15 @@
+@startuml
+
+CompositeSample3 --> "2" Director
+CompositeSample3 --> "5" Employee
+Director ..|> Person
+Director --> Employee
+Employee ..|> Person
+Person ..> Person
+
+interface Person
+class  Director
+class  Employee
+class CompositeSample3
+
+@enduml

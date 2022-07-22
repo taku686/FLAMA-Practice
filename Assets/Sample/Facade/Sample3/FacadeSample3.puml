@@ -1,0 +1,12 @@
+@startuml
+FacadeSample1 --> PlayerAttackFacade
+PlayerAttackFacade --> PlayerAttack
+PlayerAttackFacade --> AttackEffect
+PlayerAttackFacade --> AttackAnimation
+
+class FacadeSample1
+class PlayerAttackFacade
+class PlayerAttack
+class AttackEffect
+class AttackAnimation
+@enduml
