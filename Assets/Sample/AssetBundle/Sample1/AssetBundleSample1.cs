@@ -1,27 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace AssetBundle.Sample1
+namespace Sample.AssetBundle.Sample1
 {
-    public class AssetBundleSample1 
+    public class AssetBundleSample1 : MonoBehaviour
     {
-        private void CreateAssetBundle()
+        private AsyncOperationHandle<GameObject> prefabHandle;
+        private GameObject spawnedGameObject;
+
+        private async void Start()
         {
-            /*List<AssetBundleBuild> builds = new List<AssetBundleBuild>();
-            var build = new AssetBundleBuild();
-            build.assetBundleName = "test1/DesignPatternList";
-            build.assetNames = new string[1] { "Assets/Sample/AssetBundle/Sample1/test1/DesignPatternList.png" };
-            builds.Add(build);
+            // Addressables.LoadAssetAsyncで読み込む
+            prefabHandle = Addressables.LoadAssetAsync<GameObject>("Assets/Sample/AssetBundle/Prefab/Cube.prefab");
 
-            var targetDir = "AssetBundle/Android";
-            if (!Directory.Exists(targetDir)) Directory.CreateDirectory(targetDir);
-            var buildTarget = BuildTarget.Android;
-            var buildOptions = BuildAssetBundleOptions.ChunkBasedCompression;
+            // .Taskで読み込み完了までawaitできる
+            GameObject prefab = await prefabHandle.Task;
 
-            BuildPipeline.BuildAssetBundles(targetDir, builds.ToArray(), buildOptions, buildTarget);*/
+            // 読み込んだプレハブをインスタンス化する
+            spawnedGameObject = Instantiate(prefab);
+            spawnedGameObject.name = "Spawned Game Object";
+        }
+
+        private void OnDestroy()
+        {
+            // インスタンス化したGameObjectを破棄する
+            Destroy(spawnedGameObject);
+
+            // 使い終わったらhandleをリリースする
+            Addressables.Release(prefabHandle);
         }
     }
 }

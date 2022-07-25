@@ -1,0 +1,19 @@
+﻿@startuml
+CommandSample3 --> Downloader
+CommandSample3 --> VideoDownloadCommand
+CommandSample3 --> ImageDownloadCommand
+VideoDownloadCommand ..|> ICommand
+VideoDownloadCommand ..> IDownloader
+ImageDownloadCommand ..|> ICommand
+ImageDownloadCommand ..> IDownloader
+Downloader ..|> IDownloader
+
+
+class CommandSample3
+interface ICommand
+interface IDownloader
+class Downloader
+class VideoDownloadCommand
+class ImageDownloadCommand
+
+@enduml

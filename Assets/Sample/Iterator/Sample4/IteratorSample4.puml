@@ -1,0 +1,22 @@
+﻿@startuml
+IteratorSample4 --> "many" Enemy
+IteratorSample4 --> EnemyGroup
+Enemy --> EnemyType
+EnemyGroup ..|> Aggregate
+EnemyGroup --> "many" Enemy
+EnemyGroupIterator ..|> Iterator
+EnemyGroupIterator --> EnemyGroup
+Aggregate ..> Iterator
+
+
+
+
+class IteratorSample4
+interface Iterator
+interface Aggregate
+enum EnemyType
+class Enemy
+class EnemyGroup
+class EnemyGroupIterator
+
+@enduml

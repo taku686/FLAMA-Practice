@@ -1,0 +1,11 @@
+﻿@startuml
+AdapterSample3 --> Adapter
+Adapter ..|> Target
+Adapter --> Adaptee
+
+
+class AdapterSample3
+class Adaptee
+class Adapter
+interface Target
+@enduml
