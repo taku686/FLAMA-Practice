@@ -1,0 +1,18 @@
+﻿@startuml
+
+WeakEnemy ..|> IEnemy
+NormalEnemy ..|> IEnemy
+StrongEnemy ..|> IEnemy
+EnemyFactory --> WeakEnemy
+EnemyFactory --> NormalEnemy
+EnemyFactory --> StrongEnemy
+EnemyFactory ..> IEnemy
+FlyweightSample3 --> EnemyFactory
+
+class FlyweightSample3
+interface IEnemy
+class WeakEnemy
+class NormalEnemy
+class StrongEnemy
+class EnemyFactory
+@enduml

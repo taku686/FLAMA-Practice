@@ -1,0 +1,17 @@
+﻿@startuml
+StrategySample4 --> Player
+StrategySample4 --> Slash
+StrategySample4 --> Magic
+StrategySample4 --> Blow
+Player ..> IAttack
+Slash ..|> IAttack
+Magic ..|> IAttack
+Blow ..|> IAttack
+
+class StrategySample4
+interface IAttack
+class Player
+class Slash
+class Magic
+class Blow
+@enduml

@@ -7,6 +7,7 @@ BulletFactory --> DiffusionBullet
 NormalBullet ..|> IBullet
 LaserBullet ..|> IBullet
 DiffusionBullet ..|> IBullet
+BulletFactory ..> IBullet
 
 class FlyWeightSample2
 interface IBullet

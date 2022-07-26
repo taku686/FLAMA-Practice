@@ -6,6 +6,7 @@ KingSlime ..|> SlimeFlyWeight
 SlimeFactory --> Slime
 SlimeFactory --> MetalSlime
 SlimeFactory --> KingSlime
+SlimeFactory ..> SlimeFlyWeight
 
 class FlyWeightSample1
 interface SlimeFlyWeight

@@ -14,8 +14,6 @@ public class BulletFactory : IFactoryBase
     {
         _normalBullet = new NormalBullet();
         _laserBullet = new LaserBullet(_normalBullet);
-        Debug.Log(_laserBullet.Attack);
-        Debug.Log(_normalBullet.Attack);
         _diffusionBullet = new DiffusionBullet(_normalBullet);
     }
 

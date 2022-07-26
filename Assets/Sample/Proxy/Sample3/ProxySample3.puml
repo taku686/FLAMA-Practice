@@ -1,0 +1,13 @@
+﻿@startuml
+ProxySample3 ..> ISendable
+MessagingProxy ..|> ISendable
+RealMessaging ..|> ISendable
+MessagingProxy --> RealMessaging
+
+
+class ProxySample3
+interface ISendable
+class MessagingProxy
+class RealMessaging
+
+@enduml
