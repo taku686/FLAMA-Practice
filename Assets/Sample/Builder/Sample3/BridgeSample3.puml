@@ -1,0 +1,17 @@
+@startuml
+BuilderSample3 --> OldRobotBuilder
+BuilderSample3 --> RobotEngineer
+Robot ..|> IRobotPlan
+IRobotBuilder --> Robot
+OldRobotBuilder ..|> IRobotBuilder
+OldRobotBuilder --> Robot
+RobotEngineer ..> IRobotBuilder
+
+
+class BuilderSample3
+interface IRobotPlan
+class Robot
+interface IRobotBuilder
+class OldRobotBuilder
+class RobotEngineer 
+@enduml

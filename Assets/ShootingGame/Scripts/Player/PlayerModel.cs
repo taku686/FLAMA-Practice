@@ -17,20 +17,29 @@ public class PlayerModel : MonoBehaviour
     public Rigidbody _rigidbody;
     public float _moveSpeed = 3;
     private bool _IsDeath;
+    private Vector3 _min;
+    private Vector3 _max;
+    private float _distanceToMainCamera;
 
     private void Start()
     {
         _health.Value = MaxHP;
         _shotManagement.Initialize();
         _rigidbody = GetComponent<Rigidbody>();
+        _distanceToMainCamera = Vector3.Distance(Vector3.zero, Camera.main.transform.position) * 0.9f;
+        _min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, _distanceToMainCamera));
+        _max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 30 * 0.9f));
+        // Debug.Log("min" + _min + "max" + _max);
     }
 
     private void Update()
     {
         if (_IsDeath)
         {
+            _rigidbody.velocity = Vector3.zero;
             return;
         }
+
         Move();
     }
 
@@ -75,6 +84,17 @@ public class PlayerModel : MonoBehaviour
     private void Move()
     {
         _move.SetValueAndForceNotify(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+        Clamp();
+    }
+
+    void Clamp()
+    {
+        Vector3 pos = transform.position;
+
+        pos.x = Mathf.Clamp(pos.x, _min.x, _max.x);
+        pos.z = Mathf.Clamp(pos.z, _min.z, _max.z);
+
+        transform.position = pos;
     }
 
     public void Death()

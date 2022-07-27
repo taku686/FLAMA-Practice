@@ -1,0 +1,17 @@
+@startuml
+BridgeSample3 --> TVRemoteMute
+BridgeSample3 --> TVRemotePause
+BridgeSample3 --> "2" TVDevice
+TVDevice --|> EntertainmentDevice
+RemoteButton --> EntertainmentDevice
+TVRemoteMute --|> RemoteButton
+TVRemotePause --|> RemoteButton
+
+
+class BridgeSample3
+abstract class EntertainmentDevice
+class TVDevice
+abstract class RemoteButton
+class TVRemoteMute
+class TVRemotePause
+@enduml

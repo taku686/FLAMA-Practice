@@ -1,0 +1,11 @@
+﻿@startuml
+PrototypeSample3 --> CloneFactory
+PrototypeSample3 --> Slime
+Slime ..|> IEnemy
+CloneFactory ..> IEnemy
+
+class PrototypeSample3
+interface IEnemy
+class Slime
+class CloneFactory
+@enduml
