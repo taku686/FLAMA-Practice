@@ -58,7 +58,7 @@ public class PlayerModel : MonoBehaviour
 
     public void Shot()
     {
-        _shotManagement.Shot(this);
+        _shotManagement._shot.Shot(_shotManagement._bullet, this);
     }
 
     public void ChangeBulletType()

@@ -1,3 +1,71 @@
 ﻿@startuml
+class MonoBehaviour
+class Input
 
+
+
+namespace Player {
+PlayerModel -->PlayerShotManagement
+PlayerModel --> Enemy.EnemyCore
+PlayerPresenter --> PlayerModel
+PlayerPresenter --> PlayerView
+PlayerPresenter --> UI.UIView
+PlayerPresenter --> .Input
+PlayerShotManagement ..> Shot.IShot
+PlayerShotManagement --> Shot.NormalShot
+PlayerShotManagement --> Shot.LaserShot
+PlayerShotManagement --> Shot.DiffusionShot
+PlayerShotManagement --> Bullet.BulletFactory
+PlayerShotManagement ..> Bullet.IBulletBase
+PlayerShotManagement --> Bullet.BulletType
+PlayerShotManagement --> Shot.ShotType
+
+class PlayerModel
+class PlayerPresenter
+class PlayerShotManagement
+class PlayerView
+}
+namespace Manager{
+class EnemyManager
+class GeneralManager
+class SelfDestroy 
+}
+
+namespace Enemy{
+class EnemyCore
+}
+
+namespace Shot{
+class DiffusionShot
+interface IShot
+class LaserShot
+class NormalShot
+enum ShotType
+}
+
+namespace Bullet{
+BulletDecorator ..|> IBulletBase
+BulletDecorator ..> IBulletBase
+BulletFactory ..|> IFactoryBase
+BulletFactory --> NormalBullet
+BulletFactory --> LaserBullet
+BulletFactory --> DiffusionBullet
+BulletFactory --> BulletType
+BulletFactory ..> IBulletBase
+DiffusionBullet --|> BulletDecorator
+DiffusionBullet ..> IBulletBase
+
+class BulletDecorator
+class BulletFactory
+enum BulletType
+class DiffusionBullet
+interface IBulletBase
+interface IFactoryBase
+class LaserBullet
+class NormalBullet
+}
+
+namespace UI{
+class UIView
+}
 @enduml

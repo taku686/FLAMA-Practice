@@ -1,0 +1,17 @@
+@startuml
+ChainSample3 --> ConcreteHandler1
+ChainSample3 --> ConcreteHandler2
+ChainSample3 --> SomeTask
+Handler --> Handler
+Handler --> SomeTask
+ConcreteHandler1 --|>  Handler
+ConcreteHandler1 --> SomeTask
+ConcreteHandler2 --|>  Handler
+ConcreteHandler2 --> SomeTask
+
+class ChainSample3
+abstract class Handler
+class SomeTask
+class ConcreteHandler1
+class ConcreteHandler2
+@enduml

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerShotManagement : MonoBehaviour
 {
-    private IShot _shot;
-    private IBulletBase _bullet;
+    public IShot _shot;
+    public IBulletBase _bullet;
     private NormalShot _normalShot;
     private LaserShot _laserShot;
     private DiffusionShot _diffusionShot;
@@ -39,10 +39,5 @@ public class PlayerShotManagement : MonoBehaviour
                 _bullet = _bulletFactory.GetItem(BulletType.BulletTypes.DiffusionBullet);
                 break;
         }
-    }
-
-    public void Shot(PlayerModel player)
-    {
-        _shot.Shot(_bullet, player);
     }
 }

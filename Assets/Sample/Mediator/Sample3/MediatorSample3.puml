@@ -1,0 +1,22 @@
+@startuml
+MediatorSample3 --> ConcreteMediator
+MediatorSample3 --> ConcreteColleague1
+MediatorSample3 --> ConcreteColleague2
+ConcreteMediator --> ConcreteColleague1
+ConcreteMediator --> ConcreteColleague2
+ConcreteMediator --> Colleague
+ConcreteMediator --|> Mediator
+Colleague --> Mediator
+ConcreteColleague1 --|> Colleague
+ConcreteColleague1 --> Mediator
+ConcreteColleague2 --|> Colleague
+ConcreteColleague2 --> Mediator
+
+
+class MediatorSample3
+abstract class Mediator
+class ConcreteMediator
+abstract class Colleague
+class ConcreteColleague1
+class ConcreteColleague2
+@enduml

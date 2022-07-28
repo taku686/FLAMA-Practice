@@ -1,0 +1,14 @@
+@startuml
+VisitorSample3 --> ConcreteElement
+VisitorSample3 --> ConcreteVisitor
+ConcreteElement ..|> IElement
+ConcreteElement --> Visitor
+ConcreteVisitor --|> Visitor
+ConcreteVisitor --> ConcreteElement
+
+class VisitorSample3
+interface IElement
+class ConcreteElement
+abstract class Visitor
+class ConcreteVisitor
+@enduml
