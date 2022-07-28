@@ -26,13 +26,28 @@ class PlayerShotManagement
 class PlayerView
 }
 namespace Manager{
+EnemyManager --> "many" Enemy.EnemyCore
+GeneralManager --> EnemyManager
+SelfDestroy --> Damage.Damage
+SelfDestroy ..> Damage.IDamageApplicable
+
+
 class EnemyManager
 class GeneralManager
 class SelfDestroy 
 }
 
 namespace Enemy{
+EnemyCore ..|> Damage.IDamageApplicable
+EnemyCore --> EnemyMove
+EnemyCore --> Damage
+EnemyPresenter --> EnemyCore
+EnemyPresenter -->UI.UIView
+
+
 class EnemyCore
+class EnemyMove
+class EnemyPresenter
 }
 
 namespace Shot{
@@ -54,6 +69,11 @@ BulletFactory --> BulletType
 BulletFactory ..> IBulletBase
 DiffusionBullet --|> BulletDecorator
 DiffusionBullet ..> IBulletBase
+IFactoryBase -->BulletType
+LaserBullet --|> BulletDecorator
+LaserBullet ..> IBulletBase
+NormalBullet ..|> IBulletBase
+
 
 class BulletDecorator
 class BulletFactory
@@ -67,5 +87,12 @@ class NormalBullet
 
 namespace UI{
 class UIView
+}
+
+namespace Damage{
+IDamageApplicable -->Damage
+
+class Damage 
+interface IDamageApplicable
 }
 @enduml

@@ -34,7 +34,7 @@ public class EnemyManager : MonoBehaviour
             var spawnPoint = _enemySpawnpoints[Random.Range(0, _enemySpawnpoints.Length)];
             var enemy = Instantiate(_prefab, spawnPoint.position, _prefab.transform.rotation);
             _enemies.Add(enemy);
-            yield return new WaitForSeconds(Random.Range(2, 5));
+            yield return new WaitForSeconds(Random.Range(1, 3));
         }
     }
 }

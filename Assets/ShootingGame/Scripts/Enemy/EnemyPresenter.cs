@@ -22,9 +22,4 @@ public class EnemyPresenter : MonoBehaviour
                 _view._score.text = _view._totalScore.ToString();
             }).AddTo(this);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }

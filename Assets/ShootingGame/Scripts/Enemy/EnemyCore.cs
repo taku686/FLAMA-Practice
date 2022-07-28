@@ -6,7 +6,7 @@ using UniRx.Triggers;
 using System;
 using Random = UnityEngine.Random;
 
-public class EnemyCore : MonoBehaviour,IDamageApplicable
+public class EnemyCore : MonoBehaviour, IDamageApplicable
 {
     [SerializeField] private int _maxHp = 2;
     [SerializeField] private int _score = 10;
@@ -16,7 +16,7 @@ public class EnemyCore : MonoBehaviour,IDamageApplicable
     private readonly AsyncSubject<int> _onKilledAsyncSubject = new AsyncSubject<int>();
     public IObservable<int> OnKilledAsync => _onKilledAsyncSubject;
 
-    
+
     private void Awake()
     {
         _hp = new ReactiveProperty<int>(_maxHp);
@@ -28,9 +28,9 @@ public class EnemyCore : MonoBehaviour,IDamageApplicable
     void Start()
     {
         _hp.Where(x => x <= 0)
-             .Take(1)
-             .Subscribe(_ => OnDead())
-             .AddTo(this);
+            .Take(1)
+            .Subscribe(_ => OnDead())
+            .AddTo(this);
     }
 
     private void OnDead()
@@ -49,5 +49,4 @@ public class EnemyCore : MonoBehaviour,IDamageApplicable
     {
         _onKilledAsyncSubject.Dispose();
     }
-
 }
