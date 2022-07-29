@@ -5,6 +5,7 @@ using UniRx;
 
 public class PlayerModel : MonoBehaviour
 {
+    private Vector3 _startPosition;
     public readonly int MaxHP = 30;
     public readonly Vector3 _shotPosSetOff = new Vector3(0, 0, 3.0f);
     public IReadOnlyReactiveProperty<int> Health => _health;
@@ -17,12 +18,20 @@ public class PlayerModel : MonoBehaviour
     public Rigidbody _rigidbody;
     public float _moveSpeed = 3;
     private bool _IsDeath;
+
+    public bool IsDeath
+    {
+        get => _IsDeath;
+        set => _IsDeath = value;
+    }
+
     private Vector3 _min;
     private Vector3 _max;
     private float _distanceToMainCamera;
 
     private void Start()
     {
+        _startPosition = transform.position;
         _health.Value = MaxHP;
         _shotManagement.Initialize();
         _rigidbody = GetComponent<Rigidbody>();
@@ -36,7 +45,6 @@ public class PlayerModel : MonoBehaviour
     {
         if (_IsDeath)
         {
-            _rigidbody.velocity = Vector3.zero;
             return;
         }
 
@@ -101,5 +109,8 @@ public class PlayerModel : MonoBehaviour
     {
         _IsDeath = true;
         _health.Value = 30;
+        _rigidbody.velocity = Vector3.zero;
+        transform.position = _startPosition;
+        Debug.Log("Player死亡");
     }
 }

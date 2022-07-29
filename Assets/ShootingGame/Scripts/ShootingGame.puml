@@ -28,6 +28,8 @@ class PlayerView
 namespace Manager{
 EnemyManager --> "many" Enemy.EnemyCore
 GeneralManager --> EnemyManager
+GeneralManager --> Player.PlayerModel
+GeneralManager --> UIView
 SelfDestroy --> Damage.Damage
 SelfDestroy ..> Damage.IDamageApplicable
 

@@ -1,0 +1,4 @@
+@startuml
+class ObserverSample1
+
+@enduml

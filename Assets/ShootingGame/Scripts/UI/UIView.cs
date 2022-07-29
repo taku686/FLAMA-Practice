@@ -13,6 +13,7 @@ public class UIView : MonoBehaviour
     private void Start()
     {
         _score.text = 0.ToString();
-        
     }
+    
+    
 }

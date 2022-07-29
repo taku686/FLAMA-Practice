@@ -9,6 +9,7 @@ public class PlayerPresenter : MonoBehaviour
     [SerializeField] private PlayerModel _model;
     [SerializeField] private PlayerView _view;
     [SerializeField] private UIView _uiView;
+
     private void Start()
     {
         HealthObserver();
@@ -19,6 +20,12 @@ public class PlayerPresenter : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_model.IsDeath)
+        {
+            _model._rigidbody.velocity = Vector3.zero;
+            return;
+        }
+
         var moveVector = GetMoveVector();
         _model._rigidbody.velocity = moveVector * _model._moveSpeed;
     }
@@ -33,20 +40,21 @@ public class PlayerPresenter : MonoBehaviour
     private void HealthObserver()
     {
         _model.Health
-            .Where(x => x > 0)
+            .Where(x => x > 0 && !_model.IsDeath)
             .Subscribe(x =>
             {
                 _view.SetSliderValue((float)x / _model.MaxHP);
                 _view.SetHpText(x);
-            }).AddTo(this); 
+            }).AddTo(this);
         _model.Health
-            .Where(x => x <= 0)
+            .Where(x => x <= 0 && !_model.IsDeath)
             .Subscribe(x =>
             {
-              _model.Death();
-              _uiView._gameOverView.SetActive(true);
+                _model.Death();
+                _view.SetHpText(_model.MaxHP);
+                _view.SetSliderValue(1);
+                _uiView._gameOverView.SetActive(true);
             }).AddTo(this);
-        
     }
 
     private void Shot()
