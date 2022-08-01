@@ -3,19 +3,20 @@ using mvp;
 using UnityEngine;
 using UniRx;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerModel : MonoBehaviour
 {
     private Vector3 _startPosition;
     public readonly int MaxHP = 30;
-    public readonly Vector3 _shotPosSetOff = new Vector3(0, 0, 3.0f);
+    public readonly Vector3 ShotPosSetOff = new Vector3(0, 0, 3.0f);
     public IReadOnlyReactiveProperty<int> Health => _health;
     private readonly IntReactiveProperty _health = new IntReactiveProperty(30);
     public IReadOnlyReactiveProperty<Vector3> MoveDirection => _move;
     private readonly ReactiveProperty<Vector3> _move = new ReactiveProperty<Vector3>();
     [SerializeField] private PlayerShotManagement _shotManagement;
     private int _count;
-    public string _cuurentBullettype;
-    public Rigidbody _rigidbody;
+    [HideInInspector] public string _currentBulletType;
+    public Rigidbody _rigid;
     public float _moveSpeed = 3;
     private bool _IsDeath;
 
@@ -34,11 +35,13 @@ public class PlayerModel : MonoBehaviour
         _startPosition = transform.position;
         _health.Value = MaxHP;
         _shotManagement.Initialize();
-        _rigidbody = GetComponent<Rigidbody>();
-        _distanceToMainCamera = Vector3.Distance(Vector3.zero, Camera.main.transform.position) * 0.9f;
-        _min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, _distanceToMainCamera));
-        _max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 30 * 0.9f));
-        // Debug.Log("min" + _min + "max" + _max);
+        _rigid = GetComponent<Rigidbody>();
+        if (Camera.main != null)
+        {
+            _distanceToMainCamera = Vector3.Distance(Vector3.zero, Camera.main.transform.position) * 0.9f;
+            _min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, _distanceToMainCamera));
+            _max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 30 * 0.9f));
+        }
     }
 
     private void Update()
@@ -48,7 +51,7 @@ public class PlayerModel : MonoBehaviour
             return;
         }
 
-        Move();
+        PLayerPositionClamp();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,27 +78,21 @@ public class PlayerModel : MonoBehaviour
         if (_count % 3 == 0)
         {
             _shotManagement.SetShot(ShotType.ShotTypes.NormalShot);
-            _cuurentBullettype = "NormalShot";
+            _currentBulletType = "NormalShot";
         }
         else if (_count % 3 == 1)
         {
             _shotManagement.SetShot(ShotType.ShotTypes.LaserShot);
-            _cuurentBullettype = "LaserShot";
+            _currentBulletType = "LaserShot";
         }
         else if (_count % 3 == 2)
         {
             _shotManagement.SetShot(ShotType.ShotTypes.DiffusionShot);
-            _cuurentBullettype = "DiffusionShot";
+            _currentBulletType = "DiffusionShot";
         }
     }
 
-    private void Move()
-    {
-        _move.SetValueAndForceNotify(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
-        Clamp();
-    }
-
-    void Clamp()
+    private void PLayerPositionClamp()
     {
         Vector3 pos = transform.position;
 
@@ -109,7 +106,7 @@ public class PlayerModel : MonoBehaviour
     {
         _IsDeath = true;
         _health.Value = 30;
-        _rigidbody.velocity = Vector3.zero;
+        _rigid.velocity = Vector3.zero;
         transform.position = _startPosition;
         Debug.Log("Player死亡");
     }

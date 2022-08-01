@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using System;
+using ShootingGame.Scripts.Damage;
 using Random = UnityEngine.Random;
 
 public class EnemyCore : MonoBehaviour, IDamageApplicable
@@ -42,7 +43,7 @@ public class EnemyCore : MonoBehaviour, IDamageApplicable
 
     public void ApplyDamage(in Damage damage)
     {
-        _hp.Value -= damage.damageValue;
+        _hp.Value -= damage.DamageValue;
     }
 
     private void OnDestroy()

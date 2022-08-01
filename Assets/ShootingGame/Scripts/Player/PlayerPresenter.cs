@@ -1,4 +1,5 @@
 using System;
+using ShootingGame.Scripts.Manager;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
@@ -9,6 +10,7 @@ public class PlayerPresenter : MonoBehaviour
     [SerializeField] private PlayerModel _model;
     [SerializeField] private PlayerView _view;
     [SerializeField] private UIView _uiView;
+    [SerializeField] private InputEventProvider _inputEvent;
 
     private void Start()
     {
@@ -22,18 +24,18 @@ public class PlayerPresenter : MonoBehaviour
     {
         if (_model.IsDeath)
         {
-            _model._rigidbody.velocity = Vector3.zero;
+            _model._rigid.velocity = Vector3.zero;
             return;
         }
 
         var moveVector = GetMoveVector();
-        _model._rigidbody.velocity = moveVector * _model._moveSpeed;
+        _model._rigid.velocity = moveVector * _model._moveSpeed;
     }
 
     private Vector3 GetMoveVector()
     {
-        var x = _model.MoveDirection.Value.x;
-        var z = _model.MoveDirection.Value.z;
+        var x = _inputEvent.MoveDirection.Value.x;
+        var z = _inputEvent.MoveDirection.Value.z;
         return new Vector3(x, 0, z);
     }
 
@@ -59,21 +61,15 @@ public class PlayerPresenter : MonoBehaviour
 
     private void Shot()
     {
-        this.UpdateAsObservable()
-            .Where(_ => Input.GetKey(KeyCode.Space))
-            .ThrottleFirst(TimeSpan.FromSeconds(0.5f))
-            .Subscribe(_ => { _model.Shot(); });
+        _inputEvent.OnShot.Subscribe(_ => { _model.Shot(); }).AddTo(this);
     }
 
     private void ChangeBulletType()
     {
-        this.UpdateAsObservable()
-            .Where(_ => Input.GetKey(KeyCode.S))
-            .ThrottleFirst(TimeSpan.FromSeconds(1f))
-            .Subscribe(_ =>
-            {
-                _model.ChangeBulletType();
-                _view.BulletTypeText.text = _model._cuurentBullettype;
-            });
+        _inputEvent.OnChangeBullet.Subscribe(_ =>
+        {
+            _model.ChangeBulletType();
+            _view.BulletTypeText.text = _model._currentBulletType;
+        }).AddTo(this);
     }
 }

@@ -1,24 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using System;
 
-public readonly struct Damage : IEquatable<Damage>
+namespace ShootingGame.Scripts.Damage
 {
-    public int damageValue { get; }
-
-    public Damage(int value)
+    public readonly struct Damage : IEquatable<Damage>
     {
-        damageValue = value;
-    }
+        public int DamageValue { get; }
 
-    public bool Equals(Damage other)
-    {
-        return damageValue == other.damageValue;
-    }
+        public Damage(int value)
+        {
+            DamageValue = value;
+        }
 
-    public override bool Equals(object obj)
-    {
-        return obj is Damage other && Equals(other);
+        public bool Equals(Damage other)
+        {
+            return DamageValue == other.DamageValue;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Damage other && Equals(other);
+        }
     }
 }

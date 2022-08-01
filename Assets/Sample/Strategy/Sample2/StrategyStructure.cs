@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sample.Strategy.Sample2;
 using UnityEngine;
 
 public class StrategyStructure : MonoBehaviour

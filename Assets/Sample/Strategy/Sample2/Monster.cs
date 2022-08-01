@@ -1,36 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+namespace Sample.Strategy.Sample2
 {
-    private Skill _skill1;
-
-    private Skill _skill2;
-
-    private string name;
-
-    public Monster(string name)
+    public class Monster : MonoBehaviour
     {
-        this.name = name;
-    }
+        private Skill _skill1;
 
-    public Skill Skill1
-    {
-        get => this._skill1;
-        set => this._skill1 = value;
-    }
+        private Skill _skill2;
 
-    public Skill Skill2
-    {
-        get => this._skill2;
-        set => this._skill2 = value;
-    }
+        private readonly string name;
 
-    public void Attack(Skill skill)
-    {
-        Debug.Log(this.name + "の攻撃！　" + skill.damage + " ダメージ！");
-        //攻撃後の効果
-        skill.SkillEffect();
+        public Monster(string name)
+        {
+            this.name = name;
+        }
+
+        public Skill Skill1
+        {
+            get => this._skill1;
+            set => this._skill1 = value;
+        }
+
+        public Skill Skill2
+        {
+            get => this._skill2;
+            set => this._skill2 = value;
+        }
+
+        public void Attack(Skill skill)
+        {
+            Debug.Log(this.name + "の攻撃！　" + skill.damage + " ダメージ！");
+            //攻撃後の効果
+            skill.SkillEffect();
+        }
     }
 }

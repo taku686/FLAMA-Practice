@@ -8,16 +8,16 @@ public class EnemyMove : MonoBehaviour
 {
     private Rigidbody _rigid;
     [SerializeField] private float _moveSpeed;
-   
+
 
     // Start is called before the first frame update
     void Start()
     {
         _rigid = GetComponent<Rigidbody>();
+        _rigid.velocity = Vector3.back * _moveSpeed;
     }
 
     private void FixedUpdate()
     {
-        _rigid.velocity = Vector3.back * _moveSpeed;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ShootingGame.Scripts.Manager;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class GeneralManager : MonoBehaviour
 {
     [SerializeField] private EnemyManager _enemyManager;
     [SerializeField] private UIView _uiView;
+    [SerializeField] private InputEventProvider _inputEvent;
     private PlayerModel _playerModel;
     private bool _isRetry;
 
@@ -18,11 +20,21 @@ public class GeneralManager : MonoBehaviour
         _playerModel = GameObject.FindWithTag("Player").GetComponent<PlayerModel>();
         _playerModel.Health
             .Where(x => x <= 0)
-            .Subscribe(x => { _isRetry = true; }).AddTo(this);
+            .Subscribe(x =>
+            {
+                _isRetry = true;
+                Debug.Log("Health: " + x);
+            }).AddTo(this);
 
-        this.UpdateAsObservable()
+        /*this.UpdateAsObservable()
             .Where(_ => Input.GetKey(KeyCode.R) && _isRetry)
-            .Subscribe(_ => { Retry(); }).AddTo(this);
+            .Subscribe(_ => { Retry(); }).AddTo(this);*/
+        _inputEvent.OnRetryGame.Where(_ => _isRetry)
+            .Subscribe(_ =>
+            {
+                Retry();
+                Debug.Log("Game Retry");
+            }).AddTo(this);
     }
 
     private void Retry()

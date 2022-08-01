@@ -3,11 +3,11 @@ FactorySample1 --> NormalBulletFactory
 FactorySample1 --> LaserBulletFactory
 FactorySample1 --> DiffusionBulletFactory
 NormalBulletFactory ..|> BaseBulletFactory
-NormalBulletFactory ..|> NormalBullet
+NormalBulletFactory --> NormalBullet
 LaserBulletFactory ..|> BaseBulletFactory
-LaserBulletFactory --|> LaserBullet
-DiffusionBulletFactory --|> BaseBulletFactory
-DiffusionBulletFactory --|> DiffusionBullet
+LaserBulletFactory --> LaserBullet
+DiffusionBulletFactory ..|> BaseBulletFactory
+DiffusionBulletFactory --> DiffusionBullet
 NormalBullet ..|> BaseBullet
 LaserBullet ..|> BaseBullet
 DiffusionBullet ..|> BaseBullet

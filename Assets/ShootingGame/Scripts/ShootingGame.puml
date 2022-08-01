@@ -1,6 +1,5 @@
 ﻿@startuml
 class MonoBehaviour
-class Input
 
 
 
@@ -10,7 +9,6 @@ PlayerModel --> Enemy.EnemyCore
 PlayerPresenter --> PlayerModel
 PlayerPresenter --> PlayerView
 PlayerPresenter --> UI.UIView
-PlayerPresenter --> .Input
 PlayerShotManagement ..> Shot.IShot
 PlayerShotManagement --> Shot.NormalShot
 PlayerShotManagement --> Shot.LaserShot
@@ -19,6 +17,7 @@ PlayerShotManagement --> Bullet.BulletFactory
 PlayerShotManagement ..> Bullet.IBulletBase
 PlayerShotManagement --> Bullet.BulletType
 PlayerShotManagement --> Shot.ShotType
+PlayerPresenter --> Manager.InputEventProvider
 
 class PlayerModel
 class PlayerPresenter
@@ -34,6 +33,7 @@ SelfDestroy --> Damage.Damage
 SelfDestroy ..> Damage.IDamageApplicable
 
 
+class InputEventProvider
 class EnemyManager
 class GeneralManager
 class SelfDestroy 
@@ -45,11 +45,21 @@ EnemyCore --> EnemyMove
 EnemyCore --> Damage
 EnemyPresenter --> EnemyCore
 EnemyPresenter -->UI.UIView
-
+WeakEnemy ..|> IEnemyBase
+NormalEnemy ..|> IEnemyBase
+StrongEnemy ..|> IEnemyBase
+EnemyFactory ..|> IEnemyFactory
+IEnemyFactory ..> IEnemyBase
 
 class EnemyCore
 class EnemyMove
 class EnemyPresenter
+interface IEnemyBase
+interface IEnemyFactory
+class WeakEnemy
+class NormalEnemy
+class StrongEnemy
+class EnemyFactory
 }
 
 namespace Shot{
