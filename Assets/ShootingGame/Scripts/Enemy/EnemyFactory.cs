@@ -25,7 +25,7 @@ namespace ShootingGame.Scripts.Enemy
                     enemy.Initialize();
                     break;
                 case 2:
-                    enemy = obj.gameObject.AddComponent<NormalEnemy>();
+                    enemy = obj.gameObject.AddComponent<StrongEnemy>();
                     enemy.Initialize();
                     break;
                 default:
