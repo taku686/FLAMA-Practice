@@ -13,7 +13,7 @@ namespace ShootingGame.Scripts.Manager
         public IObservable<Unit> OnShot => _onShotSubject;
         public IObservable<Unit> OnChangeBullet => _onChangeBulletSubject;
         public IObservable<Unit> OnRetryGame => _onRetryGameSubject;
-        public IReadOnlyReactiveProperty<Vector3> MoveDirection => _moveDirection; 
+        public IReadOnlyReactiveProperty<Vector3> MoveDirection => _moveDirection;
 
         private readonly Subject<Unit> _onShotSubject = new Subject<Unit>();
         private readonly Subject<Unit> _onChangeBulletSubject = new Subject<Unit>();
@@ -39,7 +39,7 @@ namespace ShootingGame.Scripts.Manager
                 .Subscribe(_ =>
                 {
                     _onRetryGameSubject.OnNext(Unit.Default);
-                    Debug.Log("Input KeyCode R");
+                    //Debug.Log("Input KeyCode R");
                 }).AddTo(this);
         }
 

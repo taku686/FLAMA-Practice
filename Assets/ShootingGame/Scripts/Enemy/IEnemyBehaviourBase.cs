@@ -2,9 +2,9 @@
 
 namespace ShootingGame.Scripts.Enemy
 {
-    public interface IEnemyBase
+    public interface IEnemyBehaviourBase
     {
-        public string Name { get; set; }
+        public string Name { get; }
         public void Move();
     }
 }

@@ -23,7 +23,7 @@ public class GeneralManager : MonoBehaviour
             .Subscribe(x =>
             {
                 _isRetry = true;
-                Debug.Log("Health: " + x);
+                // Debug.Log("Health: " + x);
             }).AddTo(this);
 
         /*this.UpdateAsObservable()
@@ -33,7 +33,7 @@ public class GeneralManager : MonoBehaviour
             .Subscribe(_ =>
             {
                 Retry();
-                Debug.Log("Game Retry");
+                // Debug.Log("Game Retry");
             }).AddTo(this);
     }
 

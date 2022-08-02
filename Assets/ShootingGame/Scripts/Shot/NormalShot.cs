@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ShootingGame.Scripts.Damage;
 using UnityEngine;
 
-public class NormalShot : MonoBehaviour,IShot
+public class NormalShot : MonoBehaviour, IShot
 {
     private const float _force = 30;
 
@@ -14,6 +14,6 @@ public class NormalShot : MonoBehaviour,IShot
         bulletClone.GetComponent<Rigidbody>().AddForce(bulletClone.transform.forward * _force, ForceMode.Impulse);
         var selfDestroy = bulletClone.AddComponent<SelfDestroy>();
         selfDestroy.SetDamage(new Damage(bullet.Attack));
-        Debug.Log("NormalShot"+"Attack"+ bullet.Attack);
+        // Debug.Log("NormalShot"+"Attack"+ bullet.Attack);
     }
 }

@@ -108,6 +108,6 @@ public class PlayerModel : MonoBehaviour
         _health.Value = 30;
         _rigid.velocity = Vector3.zero;
         transform.position = _startPosition;
-        Debug.Log("Player死亡");
+        //Debug.Log("Player死亡");
     }
 }

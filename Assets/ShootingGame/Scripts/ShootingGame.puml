@@ -26,6 +26,7 @@ class PlayerView
 }
 namespace Manager{
 EnemyManager --> "many" Enemy.EnemyCore
+EnemyManager --> Enemy.EnemyFactory
 GeneralManager --> EnemyManager
 GeneralManager --> Player.PlayerModel
 GeneralManager --> UIView
@@ -41,20 +42,24 @@ class SelfDestroy
 
 namespace Enemy{
 EnemyCore ..|> Damage.IDamageApplicable
-EnemyCore --> EnemyMove
-EnemyCore --> Damage
+EnemyCore --> Damage.Damage
 EnemyPresenter --> EnemyCore
 EnemyPresenter -->UI.UIView
-WeakEnemy ..|> IEnemyBase
-NormalEnemy ..|> IEnemyBase
-StrongEnemy ..|> IEnemyBase
+WeakEnemy ..|> IEnemyBehaviourBase
+NormalEnemy ..|> IEnemyBehaviourBase
+StrongEnemy ..|> IEnemyBehaviourBase
 EnemyFactory ..|> IEnemyFactory
-IEnemyFactory ..> IEnemyBase
+IEnemyFactory ..> IEnemyBehaviourBase
+EnemyFactory --> NormalEnemy
+EnemyFactory --> WeakEnemy
+EnemyFactory --> StrongEnemy
+NormalEnemy --|> EnemyCore
+WeakEnemy --|> EnemyCore
+StrongEnemy --|> EnemyCore
 
 class EnemyCore
-class EnemyMove
 class EnemyPresenter
-interface IEnemyBase
+interface IEnemyBehaviourBase
 interface IEnemyFactory
 class WeakEnemy
 class NormalEnemy

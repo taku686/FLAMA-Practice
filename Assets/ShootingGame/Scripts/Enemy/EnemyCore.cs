@@ -13,21 +13,15 @@ public class EnemyCore : MonoBehaviour, IDamageApplicable
     [SerializeField] private int _score = 10;
 
     private ReactiveProperty<int> _hp;
-    private EnemyMove _enemyMove;
     private readonly AsyncSubject<int> _onKilledAsyncSubject = new AsyncSubject<int>();
     public IObservable<int> OnKilledAsync => _onKilledAsyncSubject;
+    
 
-
-    private void Awake()
+    public virtual void Initialize()
     {
         _hp = new ReactiveProperty<int>(_maxHp);
         _hp.AddTo(this);
-        _enemyMove = GetComponent<EnemyMove>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
+        //_enemyMove = GetComponent<EnemyMove>();
         _hp.Where(x => x <= 0)
             .Take(1)
             .Subscribe(_ => OnDead())

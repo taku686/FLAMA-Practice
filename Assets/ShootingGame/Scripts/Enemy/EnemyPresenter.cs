@@ -9,11 +9,11 @@ public class EnemyPresenter : MonoBehaviour
 {
     private UIView _view;
 
-    [SerializeField] private EnemyCore _enemyCore;
+    private EnemyCore _enemyCore;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Initialize()
     {
+        _enemyCore = GetComponent<EnemyCore>();
         _view = GameObject.FindGameObjectWithTag("Score").GetComponent<UIView>();
         _enemyCore.OnKilledAsync
             .Subscribe(x =>

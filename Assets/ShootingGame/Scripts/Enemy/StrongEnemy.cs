@@ -2,7 +2,7 @@
 
 namespace ShootingGame.Scripts.Enemy
 {
-    public class StrongEnemy : MonoBehaviour, IEnemyBase
+    public class StrongEnemy : MonoBehaviour, IEnemyBehaviourBase
     {
         public string Name { get; set; }
 

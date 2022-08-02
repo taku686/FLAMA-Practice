@@ -4,24 +4,40 @@ namespace ShootingGame.Scripts.Enemy
 {
     public class EnemyFactory : MonoBehaviour, IEnemyFactory
     {
-        [SerializeField] private EnemyCore _enemyPrefab;
+        [SerializeField] private GameObject _prefab;
+        [SerializeField] private Transform[] _enemySpawnpoints;
 
-        public void Create()
+        public EnemyCore Create()
         {
-            var num = Random.Range(0, 2);
-            GameObject enemyClone = Instantiate(_enemyPrefab.gameObject);
+            EnemyCore enemy = null;
+            var spawnPoint = _enemySpawnpoints[Random.Range(0, _enemySpawnpoints.Length)];
+            GameObject obj = Instantiate(_prefab, spawnPoint.position, _prefab.transform.rotation);
+            var num = Random.Range(0, 3);
+            Debug.Log("RandomNumber" + num);
             switch (num)
             {
                 case 0:
-                    enemyClone.AddComponent<WeakEnemy>();
+                    enemy = obj.gameObject.AddComponent<WeakEnemy>();
+                    enemy.Initialize();
                     break;
                 case 1:
-                    enemyClone.AddComponent<NormalEnemy>();
+                    enemy = obj.gameObject.AddComponent<NormalEnemy>();
+                    enemy.Initialize();
                     break;
                 case 2:
-                    enemyClone.AddComponent<StrongEnemy>();
+                    enemy = obj.gameObject.AddComponent<NormalEnemy>();
+                    enemy.Initialize();
+                    break;
+                default:
                     break;
             }
+
+            if (enemy != null)
+            {
+                enemy.gameObject.AddComponent<EnemyPresenter>().Initialize();
+            }
+
+            return enemy;
         }
     }
 }
