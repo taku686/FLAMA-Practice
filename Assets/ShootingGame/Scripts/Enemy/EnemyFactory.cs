@@ -1,17 +1,32 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Zenject;
+using Random = UnityEngine.Random;
 
 namespace ShootingGame.Scripts.Enemy
 {
     public class EnemyFactory : MonoBehaviour, IEnemyFactory
     {
-        [SerializeField] private GameObject _prefab;
-        [SerializeField] private Transform[] _enemySpawnpoints;
+        //[SerializeField] private GameObject _prefab;
+        [Inject] private GameObject _prefab;
+
+        //[SerializeField] private Transform[] _enemySpawnpoints;
+        private float _distanceToMainCamera;
+        private Vector3 _min;
+        private Vector3 _max;
+
+        private void Start()
+        {
+            _distanceToMainCamera = Vector3.Distance(Vector3.zero, Camera.main.transform.position) * 0.9f;
+            _min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, _distanceToMainCamera));
+            _max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, _distanceToMainCamera));
+        }
 
         public EnemyCore Create()
         {
             EnemyCore enemy = null;
-            var spawnPoint = _enemySpawnpoints[Random.Range(0, _enemySpawnpoints.Length)];
-            GameObject obj = Instantiate(_prefab, spawnPoint.position, _prefab.transform.rotation);
+            //  var spawnPoint = _enemySpawnpoints[Random.Range(0, _enemySpawnpoints.Length)];
+            GameObject obj = Instantiate(_prefab, CreatePosition(), _prefab.transform.rotation);
             var num = Random.Range(0, 3);
             Debug.Log("RandomNumber" + num);
             switch (num)
@@ -38,6 +53,14 @@ namespace ShootingGame.Scripts.Enemy
             }
 
             return enemy;
+        }
+
+        private Vector3 CreatePosition()
+        {
+            return new Vector3(
+                Random.Range((int)_min.x, (int)_max.x),
+                _max.y,
+                _max.z + 1);
         }
     }
 }
