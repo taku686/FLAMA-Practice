@@ -7,25 +7,23 @@ namespace ShootingGame.Scripts.Enemy
 {
     public class EnemyFactory : MonoBehaviour, IEnemyFactory
     {
-        //[SerializeField] private GameObject _prefab;
-        [Inject] private GameObject _prefab;
+        [Inject(Id = "enemy")] private GameObject _prefab;
 
-        //[SerializeField] private Transform[] _enemySpawnpoints;
         private float _distanceToMainCamera;
         private Vector3 _min;
         private Vector3 _max;
 
-        private void Start()
+        public void Initialize()
         {
             _distanceToMainCamera = Vector3.Distance(Vector3.zero, Camera.main.transform.position) * 0.9f;
             _min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, _distanceToMainCamera));
             _max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, _distanceToMainCamera));
         }
 
+
         public EnemyCore Create()
         {
             EnemyCore enemy = null;
-            //  var spawnPoint = _enemySpawnpoints[Random.Range(0, _enemySpawnpoints.Length)];
             GameObject obj = Instantiate(_prefab, CreatePosition(), _prefab.transform.rotation);
             var num = Random.Range(0, 3);
             Debug.Log("RandomNumber" + num);
@@ -57,10 +55,12 @@ namespace ShootingGame.Scripts.Enemy
 
         private Vector3 CreatePosition()
         {
-            return new Vector3(
+            Vector3 pos = new Vector3(
                 Random.Range((int)_min.x, (int)_max.x),
-                _max.y,
+                0,
                 _max.z + 1);
+            //Debug.Log(pos);
+            return pos;
         }
     }
 }

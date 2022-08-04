@@ -18,6 +18,7 @@ public class GeneralManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
+        _enemyManager.Initialize();
         _enemyManager.ResetEnemies();
         _playerModel = GameObject.FindWithTag("Player").GetComponent<PlayerModel>();
         _playerModel.Health
@@ -28,9 +29,6 @@ public class GeneralManager : MonoBehaviour
                 // Debug.Log("Health: " + x);
             }).AddTo(this);
 
-        /*this.UpdateAsObservable()
-            .Where(_ => Input.GetKey(KeyCode.R) && _isRetry)
-            .Subscribe(_ => { Retry(); }).AddTo(this);*/
         _inputEvent.OnRetryGame.Where(_ => _isRetry)
             .Subscribe(_ =>
             {

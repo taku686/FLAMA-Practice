@@ -15,6 +15,11 @@ public class EnemyManager : MonoBehaviour
     // [SerializeField] private EnemyFactory _factory;
     [Inject] private EnemyFactory _factory;
 
+    public void Initialize()
+    {
+        _factory.Initialize();
+    }
+
     public void ResetEnemies()
     {
         _conpositDisposable.Clear();
