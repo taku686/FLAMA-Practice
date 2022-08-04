@@ -40,7 +40,7 @@ public class PlayerModel : MonoBehaviour
         {
             _distanceToMainCamera = Vector3.Distance(Vector3.zero, Camera.main.transform.position) * 0.9f;
             _min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, _distanceToMainCamera));
-            _max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, _distanceToMainCamera));
+            _max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 30 * 0.9f));
         }
     }
 

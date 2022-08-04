@@ -4,12 +4,10 @@ using ShootingGame.Scripts.Manager;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
-using Zenject;
 
 public class GeneralManager : MonoBehaviour
 {
-    //[SerializeField] private EnemyManager _enemyManager;
-    [Inject] private EnemyManager _enemyManager;
+    [SerializeField] private EnemyManager _enemyManager;
     [SerializeField] private UIView _uiView;
     [SerializeField] private InputEventProvider _inputEvent;
     private PlayerModel _playerModel;

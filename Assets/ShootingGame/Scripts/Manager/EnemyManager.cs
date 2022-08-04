@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using ShootingGame.Scripts.Enemy;
 using UnityEngine;
 using UniRx;
-using Zenject;
 using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
     private readonly List<EnemyCore> _enemies = new List<EnemyCore>();
-
     private readonly CompositeDisposable _conpositDisposable = new CompositeDisposable();
-
-    // [SerializeField] private EnemyFactory _factory;
-    [Inject] private EnemyFactory _factory;
+    [SerializeField] private EnemyFactory _factory;
 
     public void ResetEnemies()
     {
@@ -27,10 +23,10 @@ public class EnemyManager : MonoBehaviour
         _enemies.Clear();
 
         StopAllCoroutines();
-        StartCoroutine(EnemySpawnCoroutine());
+        StartCoroutine(EnemySpawnCorutine());
     }
 
-    private IEnumerator EnemySpawnCoroutine()
+    private IEnumerator EnemySpawnCorutine()
     {
         while (true)
         {
