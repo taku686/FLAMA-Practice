@@ -38,6 +38,7 @@ class InputEventProvider
 class EnemyManager
 class GeneralManager
 class SelfDestroy 
+class ShootingGameInstallManager
 }
 
 namespace Enemy{
