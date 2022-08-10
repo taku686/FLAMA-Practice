@@ -11,7 +11,7 @@ namespace Sample.UniRxUniTask.Sample4
         private async void Start()
         {
             var sphere = Resources.LoadAsync<GameObject>("Sphere");
-            sphere.
+            //sphere.
 
 
         }
